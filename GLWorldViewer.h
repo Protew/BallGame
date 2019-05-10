@@ -33,62 +33,36 @@ class GLWorldViewer : public QGLWidget {
 	Q_OBJECT
 	
 private: 
-	//
-	//PHYSICS
-	//
 	b2Vec2	* gravity;
 	b2World * world;
-
-	float32 timeStep;
-	int32 velocityIterations;
-	int32 positionIterations;
+    //
+    float32 timeStep, tickness;
+    int32 velocityIterations, positionIterations, lives, balls_counter, maximum_records;
 	//
 	MessageDialog * dialog;
+    //
+    GroundBlock *temporary_base, *new_wall;
 	//
+    b2Vec2		*base_shadow_center, *shadow_cursor_center;
+    b2Vec2		*h_stretch, *v_stretch;
+    b2Vec2      *test_point;
+    bool        stretching, vertical, reach_x, reach_y;
+    CollisionDetect *collision_detector;
+    //
+    std :: vector< RECORD* > records;
 	//
-	//GAME LOGICS
-	//
-	int					lives;
-	int					balls_counter;
-	//
-	float32				tickness;
-	GroundBlock *		temporary_base;
-	//
-	b2Vec2		*		base_shadow_center;
-	b2Vec2		*		shadow_cursor_center;
-	GroundBlock *		new_wall;
-	//
-	b2Vec2		*		h_stretch;
-	b2Vec2		*		v_stretch;
-	bool				stretching;
-	bool				vertical;
-	bool				reach_x, reach_y;
-	CollisionDetect *	collision_detector;
-	
-	int					maximum_records;
-	std :: vector<RECORD*> records;
-	//
-	//
-	float32 xview;
-	float32 yview;
+    float32 xview, yview;
 	//
 	long clock;
 	QTimer * timer;
-	
-	double width;
-	double height;
-	
+    //
+    double width, height;
+    //
 	b2MouseJoint *mouse_joint;
-	
-	std::list<Object*> objects;
-	std::list<Object*> balls;
+    //
+    std::list<Object*> objects, balls, already_collided;
 	std::list<Object*>::iterator object_it;
-	//
-	std::list<Object*> already_collided;
-	//
-	//
-	b2Vec2 * test_point;
-	//
+    //
 	public slots:
 	void turn( void );
 
@@ -102,8 +76,8 @@ public:
 	//
 	b2Vec2* QTtoOpenGL( b2Vec2* );
 	b2Vec2* OpenGLtoQT( b2Vec2* );
-	b2Vec2* OpenGltoBox2d( b2Vec2* );
-	b2Vec2* Box2dtoOpenGl( b2Vec2* );
+    b2Vec2* OpenGLtoBox2d( b2Vec2* );
+    b2Vec2* Box2dtoOpenGL( b2Vec2* );
 	//
 	//
 	void stretch( void );

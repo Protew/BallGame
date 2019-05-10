@@ -24,8 +24,8 @@ GroundBlock :: GroundBlock( int ID, b2World * W, b2Vec2 *P, b2Vec2 *D )
 	fixture_definition.density = 1.0f;
 	fixture_definition.friction = 1.0f;
 	fixture_definition.userData = new FixData;
-	((FixData*)fixture_definition.userData)->object_type = WALL;
-	((FixData*)fixture_definition.userData)->doomed = false;
+    static_cast<FixData*>( fixture_definition.userData)->object_type = WALL;
+    static_cast<FixData*>( fixture_definition.userData)->doomed = false;
 	fixture = body->CreateFixture( &fixture_definition );
 	//
 	createDisplayList();
@@ -45,8 +45,8 @@ GroundBlock :: GroundBlock( int ID, b2World * W, b2Vec2 *P, b2Vec2 *D, float32 A
 	fixture_definition.density = 1.0f;
 	fixture_definition.friction = 0.75f;
 	fixture_definition.userData = new FixData;
-	((FixData*)fixture_definition.userData)->object_type = WALL;
-	((FixData*)fixture_definition.userData)->doomed = false;
+    static_cast<FixData*>( fixture_definition.userData)->object_type = WALL;
+    static_cast<FixData*>( fixture_definition.userData)->doomed = false;
 	fixture = body->CreateFixture( &fixture_definition );
 	createDisplayList();
 }
@@ -57,8 +57,8 @@ void GroundBlock :: setObjectType( OBJECT_TYPE obj_type )
 	fixture_definition.density = 1.0f;
 	fixture_definition.friction = 0.75f;
 	fixture_definition.userData = new FixData;
-	((FixData*)fixture_definition.userData)->object_type = obj_type;
-	((FixData*)fixture_definition.userData)->doomed = false;
+    static_cast<FixData*>( fixture_definition.userData)->object_type = obj_type;
+    static_cast<FixData*>( fixture_definition.userData)->doomed = false;
 	fixture = body->CreateFixture( &fixture_definition );
 }
 void GroundBlock :: createDisplayList( void )
@@ -82,14 +82,14 @@ void GroundBlock :: fillDisplayList( void )
 	glColor4f( 0.5f, 0.5f, 0.5f, 1.0f );
 	glBegin( GL_POLYGON );
 	for( int i = 0; i < shape.GetVertexCount(); i++ )
-		glVertex2d( shape.GetVertex(i).x, shape.GetVertex(i).y );
+        glVertex2d( static_cast<double>( shape.GetVertex(i).x ), static_cast<double>( shape.GetVertex(i).y ) );
 	glEnd();
 }
 void GroundBlock :: draw( void )
 {
 	glPushMatrix();
 	
-	glTranslated( body->GetPosition().x, body->GetPosition().y, 0.0 );
+    glTranslated( static_cast<double>( body->GetPosition().x ), static_cast<double>( body->GetPosition().y ), 0.0 );
 	glRotatef( ( body->GetAngle() / b2_pi ) * 180, 0, 0, 1 );
 	
 	glCallList( display_list );

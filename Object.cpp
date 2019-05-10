@@ -9,12 +9,12 @@
 
 #include "Object.h"
 
-Object :: Object( int ID, b2World * W, b2Vec2 *P, b2Vec2 *D )
+Object :: Object( int object_id, b2World *world, b2Vec2 *position, b2Vec2 *dimension )
 {
-	object_id = ID;
-	world = W;
-	position = P;
-	dimension = D;
+    this->object_id = object_id;
+    this->world = world;
+    this->position = position;
+    this->dimension = dimension;
 	
 	selected = false;
 }
@@ -23,16 +23,16 @@ void Object :: setId( int value )
 {
 	object_id = value;
 }
-void Object :: setDensity( float32 D )
+void Object :: setDensity( float32 density )
 {
 	body->DestroyFixture( &body->GetFixtureList()[0] );
-	fixture_definition.density = D;
+    fixture_definition.density = density;
 	body->CreateFixture( &fixture_definition );
 }
-void Object :: setFriction( float32 F )
+void Object :: setFriction( float32 friction )
 {
 	body->DestroyFixture( &body->GetFixtureList()[0] );
-	fixture_definition.friction = F;
+    fixture_definition.friction = friction;
 	body->CreateFixture( &fixture_definition );
 }
 //GETS
@@ -70,12 +70,12 @@ b2Fixture* Object :: getFixture( void )
 }
 b2Vec2* Object :: circlePoint( float angle, b2Vec2 *center, float ray )
 {
-	return new b2Vec2( cos( angle ) * ray + center->x, sin( angle ) * ray + center->y );
+    return new b2Vec2( cosf( angle ) * ray + center->x, sinf( angle ) * ray + center->y );
 }
 void Object :: Destroy( void )
 {
 	world->DestroyBody( body );
-	body = NULL;
+    body = nullptr;
 }
 void Object :: draw( void ){}
 Object :: ~Object( void ){}

@@ -13,84 +13,84 @@
 
 b2Vec2* GLWorldViewer ::QTtoOpenGL( b2Vec2* coord )
 {
-	//TRANSFORMA COORD QT -> OPENGL
-	float32 wx = coord->x;
-	float32 vxmax = (float32) xview + width;
-	float32 vxmin = (float32) xview;
-	float32 wxmax = (float32) width;
-	float32 wxmin = (float32) 0;
-	//
-	float32 wy = coord->y;
-	float32 vymax = (float32) yview;
-	float32 vymin = (float32) yview + height;
-	float32 wymax = (float32) height;
-	float32 wymin = (float32) 0;
-	
-	return new b2Vec2( ( ( vxmax - vxmin )/( wxmax - wxmin ) ) * ( wx - wxmin ) + vxmin, ( ( vymax - vymin )/( wymax - wymin ) ) * ( wy - wymin ) + vymin );
+    //TRANSFORMA COORD QT -> OpenGl
+    float32 wx = coord->x;
+    float32 vxmax = xview + static_cast< float > ( width );
+    float32 vxmin = static_cast< float > ( xview );
+    float32 wxmax = static_cast< float > ( width );
+    float32 wxmin = 0.0f;
+    //
+    float32 wy = coord->y;
+    float32 vymax = static_cast< float > ( yview );
+    float32 vymin = yview + static_cast< float > ( height );
+    float32 wymax = static_cast< float > ( height );
+    float32 wymin = 0.0f;
+
+    return new b2Vec2( ( ( vxmax - vxmin )/( wxmax - wxmin ) ) * ( wx - wxmin ) + vxmin, ( ( vymax - vymin )/( wymax - wymin ) ) * ( wy - wymin ) + vymin );
 }
 b2Vec2* GLWorldViewer :: OpenGLtoQT( b2Vec2* coord )
 {
-	//TRANSFORMA OPENGL -> COORD QT
-	float32 wx = coord->x;
-	float32 vxmax = (float32) width;
-	float32 vxmin = (float32) 0;
-	float32 wxmax = (float32) xview + width;
-	float32 wxmin = (float32) xview;
-	//
-	float32 wy = coord->y;
-	float32 vymax = (float32) height;
-	float32 vymin = (float32) 0;
-	float32 wymax = (float32) yview;
-	float32 wymin = (float32) yview + height;
-	
-	return new b2Vec2( ( ( vxmax - vxmin )/( wxmax - wxmin ) ) * ( wx - wxmin ) + vxmin, ( ( vymax - vymin )/( wymax - wymin ) ) * ( wy - wymin ) + vymin );
+    //TRANSFORMA OpenGl -> COORD QT
+    float32 wx = coord->x;
+    float32 vxmax = static_cast< float > ( width );
+    float32 vxmin = 0.0f;
+    float32 wxmax = xview + static_cast< float > ( width );
+    float32 wxmin = static_cast< float > ( xview );
+    //
+    float32 wy = coord->y;
+    float32 vymax = static_cast< float > ( height );
+    float32 vymin = 0.0f;
+    float32 wymax = static_cast< float > ( yview );
+    float32 wymin = yview + static_cast< float > ( height );
+
+    return new b2Vec2( ( ( vxmax - vxmin )/( wxmax - wxmin ) ) * ( wx - wxmin ) + vxmin, ( ( vymax - vymin )/( wymax - wymin ) ) * ( wy - wymin ) + vymin );
 }
-b2Vec2* GLWorldViewer ::OpenGltoBox2d( b2Vec2* coord ) 
+b2Vec2* GLWorldViewer ::OpenGLtoBox2d( b2Vec2* coord )
 {
-	//TRANSFORMA COORD OPENGL -> BOX2D
-	float32 wx = coord->x;
-	float32 vxmax = (float32) width/2;
-	float32 vxmin = (float32) 0;
-	float32 wxmax = (float32) width;
-	float32 wxmin = (float32) 0;
-	//
-	float32 wy = coord->y;
-	float32 vymax = (float32) 0;
-	float32 vymin = (float32) height/2;
-	float32 wymax = (float32) 0;
-	float32 wymin = (float32) height;
-	
-	return new b2Vec2( ( ( vxmax - vxmin )/( wxmax - wxmin ) ) * ( wx - wxmin ) + vxmin, ( ( vymax - vymin )/( wymax - wymin ) ) * ( wy - wymin ) + vymin );
+    //TRANSFORMA COORD OpenGl -> BOX2D
+    float32 wx = coord->x;
+    float32 vxmax = static_cast< float > ( width ) / 2.0f;
+    float32 vxmin = 0.0f;
+    float32 wxmax = static_cast< float > ( width );
+    float32 wxmin = 0.0f;
+    //
+    float32 wy = coord->y;
+    float32 vymax = 0.0f;
+    float32 vymin = static_cast< float > ( height ) / 2.0f;
+    float32 wymax = 0.0f;
+    float32 wymin = static_cast< float > ( height );
+
+    return new b2Vec2( ( ( vxmax - vxmin )/( wxmax - wxmin ) ) * ( wx - wxmin ) + vxmin, ( ( vymax - vymin )/( wymax - wymin ) ) * ( wy - wymin ) + vymin );
 }
-b2Vec2* GLWorldViewer :: Box2dtoOpenGl( b2Vec2* coord ) 
+b2Vec2* GLWorldViewer :: Box2dtoOpenGL( b2Vec2* coord )
 {
-	//TRANSFORMA COORD BOX2D -> OPENGL
-	float32 wx = coord->x;
-	float32 vxmax = (float32) width;
-	float32 vxmin = (float32) 0;
-	float32 wxmax = (float32) width/2;
-	float32 wxmin = (float32) 0;
-	//
-	float32 wy = coord->y;
-	float32 vymax = (float32) 0;
-	float32 vymin = (float32) height;
-	float32 wymax = (float32) 0;
-	float32 wymin = (float32) height/2;
-	
-	return new b2Vec2( ( ( vxmax - vxmin )/( wxmax - wxmin ) ) * ( wx - wxmin ) + vxmin, ( ( vymax - vymin )/( wymax - wymin ) ) * ( wy - wymin ) + vymin );
+    //TRANSFORMA COORD BOX2D -> OpenGl
+    float32 wx = coord->x;
+    float32 vxmax = static_cast< float > ( width );
+    float32 vxmin = 0.0f;
+    float32 wxmax = static_cast< float > ( width ) / 2.0f;
+    float32 wxmin = 0.0f;
+    //
+    float32 wy = coord->y;
+    float32 vymax = 0.0f;
+    float32 vymin = static_cast< float > ( height );
+    float32 wymax = 0.0f;
+    float32 wymin = static_cast< float > ( height ) / 2.0f;
+
+    return new b2Vec2( ( ( vxmax - vxmin )/( wxmax - wxmin ) ) * ( wx - wxmin ) + vxmin, ( ( vymax - vymin )/( wymax - wymin ) ) * ( wy - wymin ) + vymin );
 }
-GLWorldViewer :: GLWorldViewer( QWidget *parent, double W, double H ) 
+GLWorldViewer :: GLWorldViewer( QWidget *parent, double width, double height )
 : QGLWidget( parent )
 {	
-	width = W;
-	height = H;
+    this->width = width;
+    this->height = height;
 	
 	clock = 0;
 	
 	xview = yview = 0;
 	
-	timeStep = 1.0f / 60.0f;
-	velocityIterations = 6;
+    timeStep = 1.0f / 50.0f;
+    velocityIterations = 6;
 	positionIterations = 2;
 	
 	gravity = new b2Vec2( 0.0f, 0.0f );
@@ -103,8 +103,7 @@ GLWorldViewer :: GLWorldViewer( QWidget *parent, double W, double H )
 	//timer->start();
 	
 	setFormat( QGLFormat( QGL::DoubleBuffer | QGL::DepthBuffer ) );
-	setFixedSize( width, height );
-	//
+    setFixedSize( static_cast< int > ( width ), static_cast< int > ( height ) );
 	//
 	//GAME CONCEPTS
 	//
@@ -114,11 +113,11 @@ GLWorldViewer :: GLWorldViewer( QWidget *parent, double W, double H )
 	lives = 3;
 	balls_counter = 1;
 	//
-	( ( GLWorldWidget * ) this->parent() )->setLivesLabelText( lives );
+    static_cast<GLWorldWidget*>( this->parent() )->setLivesLabelText( lives );
 	//
-	temporary_base = NULL;
-	base_shadow_center = NULL;
-	shadow_cursor_center = NULL;
+    temporary_base = nullptr;
+    base_shadow_center = nullptr;
+    shadow_cursor_center = nullptr;
 	stretching = false;
 	vertical = true;
 	reach_x = reach_y = false;
@@ -168,17 +167,17 @@ bool alreadyExist( std :: list < Object* > obj_list, Object * target )
 {
 	std::list<Object*>::iterator obj_it;
 	for ( obj_it = obj_list.begin(); obj_it != obj_list.end(); obj_it++)
-		if( ( Object* ) *obj_it  == target )
+        if( dynamic_cast<Object*> ( *obj_it )  == target )
 			return true;
 	return false;
 }
 void GLWorldViewer :: createWall( void )
 {
 	//PEGA CENTRO E DIMENSAO
-	b2Vec2 * center = new b2Vec2( (( base_shadow_center->x - h_stretch->x ) + ( base_shadow_center->x + h_stretch->y ) )/2, (( base_shadow_center->y - v_stretch->x ) + ( base_shadow_center->y + v_stretch->y ) )/2 );
-	b2Vec2 * dim = new b2Vec2( fabs(( base_shadow_center->x - h_stretch->x ) - ( base_shadow_center->x + h_stretch->y ) )/2, fabs( ( base_shadow_center->y - v_stretch->x ) - ( base_shadow_center->y + v_stretch->y ) )/2 );
+    b2Vec2 * center = new b2Vec2( ( ( base_shadow_center->x - h_stretch->x ) + ( base_shadow_center->x + h_stretch->y ) )/2, (( base_shadow_center->y - v_stretch->x ) + ( base_shadow_center->y + v_stretch->y ) )/2 );
+    b2Vec2 * dim = new b2Vec2( abs( ( base_shadow_center->x - h_stretch->x ) - ( base_shadow_center->x + h_stretch->y ) )/2, abs( ( base_shadow_center->y - v_stretch->x ) - ( base_shadow_center->y + v_stretch->y ) )/2 );
 	//CRIA BARREIRA SOLIDA
-	new_wall = new GroundBlock( 99, world, OpenGltoBox2d( center ), dim );
+    new_wall = new GroundBlock( 99, world, OpenGLtoBox2d( center ), dim );
 	new_wall->setObjectType( FILL );
 	//
 	objects.push_back( new_wall );
@@ -187,26 +186,26 @@ void GLWorldViewer :: createWall( void )
 void GLWorldViewer :: destroyTemporary( void )
 {
 	temporary_base->Destroy();
-	temporary_base = NULL;
+    temporary_base = nullptr;
 	reach_x = reach_y = stretching = false;
 	v_stretch->x = v_stretch->y = h_stretch->x = h_stretch->y = tickness;
 	already_collided.clear();
 }
 bool GLWorldViewer :: fillEnough( void )
 {
-	float32 total_area = ( ( width - 3.96 * tickness ) * ( height - 3.96 * tickness ) );
+    double total_area = ( width - 3.96 * static_cast<double> ( tickness ) ) * ( height - 3.96 * static_cast<double> ( tickness ) );
 	//
-	float32 filled_area = 0.0f;
+    double filled_area = 0.0;
 	for ( object_it = objects.begin(); object_it != objects.end(); object_it++)
 	{
-		Object * target = ( ( Object* ) *object_it );
-		if( ( ( FixData* ) target->getFixture()->GetUserData() )->object_type == FILL )
+        Object * target = dynamic_cast<Object*> ( *object_it );
+        if( static_cast<FixData*> ( target->getFixture()->GetUserData() )->object_type == FILL )
 		{
-			filled_area += ( 2 * target->getDimension()->x ) * ( 2 * target->getDimension()->y );
+            filled_area += ( 2.0 * static_cast<double> ( target->getDimension()->x ) ) * ( 2.0 * static_cast<double> ( target->getDimension()->y ) );
 		}
 	}
 	std :: cout << "FILLED " << filled_area << "\nTOTAL " << total_area << "\n% " << filled_area / total_area << std :: endl;
-	if( filled_area / total_area >= 1.0f - ( 0.001f * ( int ) balls.size() ) )
+    if( filled_area / total_area >= 1.0 - ( 0.001 * static_cast<int> ( balls.size() ) ) )
 		return true;
 	return false;
 	
@@ -214,7 +213,7 @@ bool GLWorldViewer :: fillEnough( void )
 void GLWorldViewer :: testSuccess( void )
 {
 	//DERROTA
-	if( temporary_base && ( ( FixData* ) temporary_base->getFixture()->GetUserData() )->doomed )
+    if( temporary_base && static_cast<FixData*> ( temporary_base->getFixture()->GetUserData() )->doomed )
 	{
 		lives--;
 		if( reach_x || reach_y )
@@ -222,7 +221,7 @@ void GLWorldViewer :: testSuccess( void )
 			createWall();
 		}
 		destroyTemporary();
-		( ( GLWorldWidget * ) this->parent() )->setLivesLabelText( lives );
+        dynamic_cast<GLWorldWidget*> ( this->parent() )->setLivesLabelText( lives );
 	}
 	//std :: cout << "LIVES " << lives << std :: endl;
 	if( !lives )
@@ -231,7 +230,7 @@ void GLWorldViewer :: testSuccess( void )
 		//MOSTRA TELA DERROTA
 		//
 		std :: cout << "PERDEU !!!" << std :: endl;
-		( ( MainWindow * )this->parent()->parent() )->clearPlayingTime();
+        dynamic_cast<MainWindow*> ( this->parent()->parent() )->clearPlayingTime();
 		RECORD * record = new RECORD;
 		record->name =  "";
 		record->score = balls_counter;
@@ -250,8 +249,8 @@ void GLWorldViewer :: testStretch( void )
 	bool collides = false;
 	for ( object_it = objects.begin(); object_it != objects.end() && !collides; object_it++)
 	{
-		Object * target = ( ( Object* ) *object_it );
-		b2Vec2 * target_center = Box2dtoOpenGl( ( b2Vec2* )&target->getBody()->GetWorldCenter() );
+        Object * target = dynamic_cast<Object*> ( *object_it );
+        b2Vec2 * target_center = Box2dtoOpenGL( const_cast<b2Vec2*> ( &target->getBody()->GetWorldCenter() ) );
 		
 		//if( typeid( *target ) == typeid( SphereObject ) )
 		
@@ -266,13 +265,11 @@ void GLWorldViewer :: testStretch( void )
 				if( !reach_x && base_shadow_center->y > target_center->y )
 				{
 					reach_x = true;
-					std :: cout << "DOWN" << std :: endl;
 				}
 				//BATEU EM CIMA
 				if( !reach_y && base_shadow_center->y < target_center->y )
 				{
 					reach_y = true;
-					std :: cout << "UP" << std :: endl;
 				}
 			}
 			else{
@@ -280,13 +277,11 @@ void GLWorldViewer :: testStretch( void )
 				if( !reach_x && base_shadow_center->x > target_center->x )
 				{
 					reach_x = true;
-					std :: cout << "LEFT" << std :: endl;
 				}
 				//BATEU A DIREITA
 				if( !reach_y && base_shadow_center->x < target_center->x )
 				{
 					reach_y = true;
-					std :: cout << "RIGHT" << std :: endl;
 				}
 			}
 			collides = true;
@@ -298,12 +293,12 @@ bool GLWorldViewer :: sectorHasBall( b2Vec2 * center, b2Vec2 * dim )
 	//
 	// !!!!!!!!!!!!
 	//
-	b2Vec2 * real_center = Box2dtoOpenGl( center );
+    b2Vec2 * real_center = Box2dtoOpenGL( center );
 	b2Vec2 * real_dim = new b2Vec2( dim->x * 2, dim->y * 2 );
 	//
 	for ( object_it = balls.begin(); object_it != balls.end(); object_it++ )
 	{
-		SphereObject * target = ( ( SphereObject* ) *object_it );
+        SphereObject * target = dynamic_cast<SphereObject*>( *object_it );
 		b2Vec2 * point = target->getPosition();
 		//
 		std :: cout << "( " << point->x << ", " << point->y << ") " << std :: endl;
@@ -322,18 +317,18 @@ void GLWorldViewer :: placeWalls( void )
 	//BASE
 	//
 	//
-	b2Vec2 * center = OpenGltoBox2d( QTtoOpenGL( new b2Vec2( width/2, height - tickness ) ) );
+    b2Vec2 * center = OpenGLtoBox2d( QTtoOpenGL( new b2Vec2( static_cast<float>( width ) / 2.0f,  static_cast<float>( height ) - tickness ) ) );
 	//BOTTOM
-	GroundBlock * bottom = new GroundBlock( 11, world, center, new b2Vec2( width/2, tickness ) );
+    GroundBlock * bottom = new GroundBlock( 11, world, center, new b2Vec2( static_cast<float>( width ) / 2.0f, tickness ) );
 	//TOP
-	center = OpenGltoBox2d( QTtoOpenGL( new b2Vec2( width/2, tickness ) ) );
-	GroundBlock * top = new GroundBlock( 22, world, center, new b2Vec2( width/2, tickness ) );
+    center = OpenGLtoBox2d( QTtoOpenGL( new b2Vec2( static_cast<float>( width ) / 2.0f, tickness ) ) );
+    GroundBlock * top = new GroundBlock( 22, world, center, new b2Vec2( static_cast<float>( width ) / 2.0f, static_cast<float>( tickness ) ) );
 	//LEFT
-	center = OpenGltoBox2d( QTtoOpenGL( new b2Vec2( tickness, height/2 ) ) );
-	GroundBlock * left = new GroundBlock( 33, world, center, new b2Vec2( tickness, height/2 ) );
+    center = OpenGLtoBox2d( QTtoOpenGL( new b2Vec2( static_cast<float>( tickness ), static_cast<float>( height ) / 2.0f ) ) );
+    GroundBlock * left = new GroundBlock( 33, world, center, new b2Vec2( static_cast<float>( tickness ), static_cast<float>( height ) / 2.0f ) );
 	//RIGHT
-	center = OpenGltoBox2d( QTtoOpenGL( new b2Vec2( width - tickness, height/2 ) ) );
-	GroundBlock * right = new GroundBlock( 44, world, center, new b2Vec2( tickness, height/2 ) );
+    center = OpenGLtoBox2d( QTtoOpenGL( new b2Vec2( static_cast<float>( width ) - tickness, static_cast<float>( height ) / 2.0f ) ) );
+    GroundBlock * right = new GroundBlock( 44, world, center, new b2Vec2( static_cast<float>( tickness ), static_cast<float>( height ) / 2.0f ) );
 	//
 	objects.push_back( bottom );
 	objects.push_back( top );
@@ -344,9 +339,9 @@ void GLWorldViewer :: placeBalls( void )
 {
 	for( int bid = 0; bid < balls_counter; bid++ )
 	{
-		b2Vec2 * center = OpenGltoBox2d( QTtoOpenGL( new b2Vec2( width/2 + ( bid * ( 2 * tickness ) ), height/2 ) ) );
-		SphereObject * ball = new SphereObject( objects.size(), world, center, tickness );
-		b2Vec2 * center_effect = new b2Vec2( ball->getBody()->GetWorldCenter().x + ( rand() % (int) ( 2 * tickness ) - tickness ), ball->getBody()->GetWorldCenter().y + ( rand() % (int)( 2 * tickness ) - tickness ) );
+        b2Vec2 * center = OpenGLtoBox2d( QTtoOpenGL( new b2Vec2( static_cast<float>( width ) / 2.0f + ( bid * ( 2 * tickness ) ), static_cast<float>( height ) / 2.0f ) ) );
+        SphereObject * ball = new SphereObject( static_cast<int>( objects.size() ), world, center, tickness );
+        b2Vec2 * center_effect = new b2Vec2( ball->getBody()->GetWorldCenter().x + ( rand() % static_cast<int>( 2.0f * tickness ) - tickness ), ball->getBody()->GetWorldCenter().y + ( rand() % static_cast<int>( 2.0f * tickness ) - tickness ) );
 		ball->getBody()->ApplyForce( b2Vec2( ( rand() % 2 )? -500 * ball->getBody()->GetMass() : 500 * ball->getBody()->GetMass(), ( rand() % 2 ) ? -500 * ball->getBody()->GetMass() : 500 * ball->getBody()->GetMass() ), *center_effect );
 		balls.push_back( ball );
 	}
@@ -354,13 +349,13 @@ void GLWorldViewer :: placeBalls( void )
 void GLWorldViewer :: loadNextStage( void )
 {
 	timer->stop();
-	( ( MainWindow * )this->parent()->parent() )->countPlayingTime();
+    dynamic_cast<MainWindow*>( this->parent()->parent() )->countPlayingTime();
 	balls_counter++;
 	lives++;
 	//
-	temporary_base = NULL;
-	base_shadow_center = NULL;
-	shadow_cursor_center = NULL;
+    temporary_base = nullptr;
+    base_shadow_center = nullptr;
+    shadow_cursor_center = nullptr;
 	stretching = false;
 	vertical = true;
 	reach_x = reach_y = false;
@@ -373,29 +368,29 @@ void GLWorldViewer :: loadNextStage( void )
 	//WALLS
 	for ( object_it = objects.begin(); object_it != objects.end(); object_it++)
 	{
-		Object * target = ( ( Object* ) *object_it );
+        Object * target = dynamic_cast<Object*>( *object_it );
 		target->Destroy();
-		target = NULL;
+        target = nullptr;
 	}
 	objects.clear();
 	//BALLS
 	for ( object_it = balls.begin(); object_it != balls.end(); object_it++)
 	{
-		Object * target = ( ( Object* ) *object_it );
+        Object * target = dynamic_cast<Object*>( *object_it );
 		target->Destroy();
-		target = NULL;
+        target = nullptr;
 	}
 	balls.clear();
 	placeWalls();
 	placeBalls();
 	//
-	( ( GLWorldWidget * ) this->parent() )->setLivesLabelText( lives );
+    dynamic_cast<GLWorldWidget*> ( this->parent() )->setLivesLabelText( lives );
 }
 void GLWorldViewer :: properFill( void )
 {
 	//TESTA TODOS OS OBJETOS
 	b2Vec2 * wall_position = new_wall->getPosition();
-	GroundBlock * contour_wall = NULL;
+    GroundBlock * contour_wall = nullptr;
 	for( int one_time = 0; one_time < 2; one_time++ )
 	{
 		bool collides = false;
@@ -432,7 +427,7 @@ void GLWorldViewer :: properFill( void )
 			//
 			for ( object_it = objects.begin(); object_it != objects.end() && !collides; object_it++)
 			{
-				Object * target = ( ( Object* ) *object_it );
+                Object * target = dynamic_cast<Object*>( *object_it );
 				b2Vec2 * target_center = target->getPosition();
 				b2Vec2 * target_dim = target->getDimension();
 				
@@ -442,13 +437,13 @@ void GLWorldViewer :: properFill( void )
 				{
 					//
 					//std :: cout << "ACHOU " << target->getId() << std :: endl;
-					contour_wall = ( GroundBlock* ) target;
+                    contour_wall = dynamic_cast<GroundBlock*>( target );
 					collides = true;
 				}
 			}
 			stretch += tickness/5;
 		}
-		b2Vec2 * dim = NULL, * center = NULL;
+        b2Vec2 * dim = nullptr, * center = nullptr;
 		if( contour_wall )
 		{
 			if( vertical ){
@@ -467,7 +462,7 @@ void GLWorldViewer :: properFill( void )
 				fill->setObjectType( FILL );
 				//new_wall->Destroy();
 				//objects.remove( new_wall );
-				//new_wall = NULL;
+                //new_wall = nullptr;
 				objects.push_back( fill );
 			}
 			else
@@ -503,17 +498,17 @@ void GLWorldViewer :: stretch( void )
 	if( temporary_base )
 	{
 		temporary_base->Destroy();
-		//temporary_base = NULL;
+        //temporary_base = nullptr;
 	}
 	if( stretching )
 	{
 		//
 		//PEGA CENTRO E DIMENSAO DA BARREIRA TEMPORARIA
 		//
-		b2Vec2 * center = new b2Vec2( (( base_shadow_center->x - h_stretch->x ) + ( base_shadow_center->x + h_stretch->y ) )/2, (( base_shadow_center->y - v_stretch->x ) + ( base_shadow_center->y + v_stretch->y ) )/2 );
-		b2Vec2 * dim = new b2Vec2( fabs(( base_shadow_center->x - h_stretch->x ) - ( base_shadow_center->x + h_stretch->y ) )/2, fabs( ( base_shadow_center->y - v_stretch->x ) - ( base_shadow_center->y + v_stretch->y ) )/2 );
+        b2Vec2 * center = new b2Vec2( ( ( base_shadow_center->x - h_stretch->x ) + ( base_shadow_center->x + h_stretch->y ) ) / 2.0f, (( base_shadow_center->y - v_stretch->x ) + ( base_shadow_center->y + v_stretch->y ) ) / 2.0f );
+        b2Vec2 * dim = new b2Vec2( abs( ( base_shadow_center->x - h_stretch->x ) - ( base_shadow_center->x + h_stretch->y ) ) / 2.0f, abs( ( base_shadow_center->y - v_stretch->x ) - ( base_shadow_center->y + v_stretch->y ) ) / 2.0f );
 		//
-		temporary_base = new GroundBlock( objects.size(), world, OpenGltoBox2d( center ), dim );
+        temporary_base = new GroundBlock( static_cast<int>( objects.size() ), world, OpenGLtoBox2d( center ), dim );
 		temporary_base->setObjectType( BASE );
 		//
 		testStretch();
@@ -547,15 +542,13 @@ void GLWorldViewer :: turn( void )
 //GETS
 void GLWorldViewer :: initializeGL( void )
 {
-	//PRERROGATIVAS OPENGL
-	
-	glViewport( 0, 0, width, height );
+    glViewport( 0, 0,  static_cast< int > ( width ), static_cast< int > ( height ) );
 	
 	glMatrixMode ( GL_PROJECTION );
 	glLoadIdentity ();
 	
-	gluOrtho2D( xview, xview + width, yview, yview + height );
-	
+    gluOrtho2D( static_cast< double > ( xview ), static_cast< double > ( xview ) + width, static_cast< double > ( yview ), static_cast< double > ( yview ) + height );
+
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
@@ -575,19 +568,19 @@ void GLWorldViewer :: resizeGL( int w, int h )
 	width = w;
 	height = h;
 	
-	glViewport( 0, 0, width, height );
-	
-	glMatrixMode (GL_PROJECTION);
-	glLoadIdentity ();
-	
-	gluOrtho2D( xview, xview + width, yview, yview + height );
-	
+    glViewport( 0, 0,  static_cast< int > ( width ), static_cast< int > ( height ) );
+
+    glMatrixMode ( GL_PROJECTION );
+    glLoadIdentity ();
+
+    gluOrtho2D( static_cast< double > ( xview ), static_cast< double > ( xview ) + width, static_cast< double > ( yview ), static_cast< double > ( yview ) + height );
+
 	glMatrixMode ( GL_MODELVIEW );
 	glLoadIdentity ();
 }
 b2Vec2* circlePoint( float angle, b2Vec2 *center, float ray )
 {
-	return new b2Vec2( cos( angle ) * ray + center->x, sin( angle ) * ray + center->y );
+    return new b2Vec2( cosf( angle ) * ray + center->x, sinf( angle ) * ray + center->y );
 }
 void GLWorldViewer :: drawShadowCursor( void )
 {
@@ -626,10 +619,10 @@ void GLWorldViewer :: paintGL()
 	//
 	//WALLS
 	for ( object_it = objects.begin(); object_it != objects.end(); object_it++)
-		( ( Object* ) *object_it )->draw();
+        dynamic_cast<Object*> ( *object_it )->draw();
 	//BALLS
 	for ( object_it = balls.begin(); object_it != balls.end(); object_it++)
-		( ( Object* ) *object_it )->draw();
+        dynamic_cast<Object*> ( *object_it )->draw();
 	//
 	if( shadow_cursor_center )
 		drawShadowCursor();
@@ -651,8 +644,8 @@ void GLWorldViewer :: projection( void )
 	glMatrixMode (GL_PROJECTION);
 	glLoadIdentity ();
 	
-	gluOrtho2D( xview, xview + width, yview, yview + height );
-	
+    gluOrtho2D( static_cast< double > ( xview ), static_cast< double > ( xview ) + width, static_cast< double > ( yview ), static_cast< double > ( yview ) + height );
+
 	glMatrixMode ( GL_MODELVIEW );
 	glLoadIdentity ();
 }
@@ -663,18 +656,17 @@ void GLWorldViewer :: startStopTimer( void )
 	else
 		timer->start();
 	
-	( ( MainWindow * )this->parent()->parent() )->countPlayingTime();
+    dynamic_cast<MainWindow*> ( this->parent()->parent() )->countPlayingTime();
 }
 void GLWorldViewer :: keyPressEvent( QKeyEvent * event )
 {
-	b2Vec2 * center = NULL;
-	SphereObject * ball = NULL;
+    b2Vec2 * center = nullptr;
+    SphereObject * ball = nullptr;
 	switch( event->key() )
 	{
 			//ESC
 		case 16777216:  
 			exit(0);
-			break;
 		case 27:
 			break;
 		case 32:  
@@ -709,8 +701,8 @@ void GLWorldViewer :: keyPressEvent( QKeyEvent * event )
 			break;
 		case 'b':
 		case 'B': 
-			center = OpenGltoBox2d( QTtoOpenGL( new b2Vec2( width/2, height/2 ) ) );
-			ball = new SphereObject( objects.size(), world, center, tickness );
+            center = OpenGLtoBox2d( QTtoOpenGL( new b2Vec2( static_cast<float>( width ) / 2.0f, static_cast<float>( height ) / 2.0f ) ) );
+            ball = new SphereObject( static_cast<int>( objects.size() ), world, center, tickness );
 			ball->getBody()->ApplyForce( b2Vec2( ( rand() % 2 )? -500 * ball->getBody()->GetMass() : 500 * ball->getBody()->GetMass(), ( rand() % 2 ) ? -500 * ball->getBody()->GetMass() : 500 * ball->getBody()->GetMass() ), ball->getBody()->GetWorldCenter() );
 			std::cout << "( " << ball->getPosition()->x << ", " << ball->getPosition()->y << std::endl;
 			balls.push_back( ball );
@@ -819,11 +811,11 @@ bool GLWorldViewer :: shadowCursorCollides( void )
 {
 	if( shadow_cursor_center )
 	{
-		b2Vec2 * center = OpenGltoBox2d( shadow_cursor_center );
+        b2Vec2 * center = OpenGLtoBox2d( shadow_cursor_center );
 		//
 		for ( object_it = objects.begin(); object_it != objects.end(); object_it++)
 		{
-			Object * target = ( ( Object* ) *object_it );
+            Object * target = dynamic_cast<Object *>( *object_it );
 			b2Vec2 * target_center = target->getPosition();
 			
 			if ( center->x - tickness/2 < target_center->x + target->getDimension()->x/2 && center->x + tickness/2 > target_center->x - target->getDimension()->x/2 &&
@@ -870,7 +862,7 @@ void GLWorldViewer :: leaveEvent( QEvent * event )
 {
 	setMouseTracking( false );
 	
-	shadow_cursor_center = NULL;
+    shadow_cursor_center = nullptr;
 	
 	event->accept();
 }

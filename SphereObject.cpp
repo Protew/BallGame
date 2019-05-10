@@ -28,8 +28,8 @@ SphereObject :: SphereObject( int ID, b2World * W, b2Vec2 * P, float32 R )
 	fixture_definition.friction = 0.0f;
 	fixture_definition.restitution = 1.0f;
 	fixture_definition.userData = new FixData;
-	((FixData*)fixture_definition.userData)->object_type = BALL;
-	((FixData*)fixture_definition.userData)->doomed = false;
+    static_cast<FixData*> ( fixture_definition.userData )->object_type = BALL;
+    static_cast<FixData*> ( fixture_definition.userData)->doomed = false;
 	fixture = body->CreateFixture( &fixture_definition );
 	createDisplayList();
 }

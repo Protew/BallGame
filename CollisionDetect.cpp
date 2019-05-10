@@ -8,7 +8,7 @@
  */
 
 #include "CollisionDetect.h"
-#include "GroundBlock.h"∫
+#include "GroundBlock.h"
 #include <typeinfo>
 #include <cmath>
 
@@ -18,8 +18,8 @@ CollisionDetect :: CollisionDetect( b2World* W )
 }
 void CollisionDetect :: BeginContact( b2Contact* contact )
 {
-	FixData *data_a = ((FixData*)contact->GetFixtureA()->GetUserData() );
-	FixData *data_b = ((FixData*)contact->GetFixtureB()->GetUserData() );
+    FixData *data_a = static_cast<FixData*> ( contact->GetFixtureA()->GetUserData() );
+    FixData *data_b = static_cast<FixData*> ( contact->GetFixtureB()->GetUserData() );
 	
 	if( data_a->object_type == BALL && data_b->object_type == BASE )
 	{
@@ -37,9 +37,12 @@ void CollisionDetect :: EndContact( b2Contact* contact )
 void CollisionDetect :: PreSolve( b2Contact* contact, const b2Manifold* oldManifold )
 {
 	contact->IsTouching();
-	//std::cout << "PreSolve" << std::endl;
+    std::cout << "PreSolve - oldManifold( " << oldManifold->localPoint.x << ", " << oldManifold->localPoint.y << " )" << std::endl;
 }
 void CollisionDetect :: PostSolve( b2Contact* contact, const b2ContactImpulse* impulse )
 {
 	contact->IsTouching();
+    //
+    std::cout << "PostSolve - impulse( " << impulse->normalImpulses[ 0 ] << ", " << impulse->normalImpulses[ 1 ] << " )" << std::endl;
+
 }

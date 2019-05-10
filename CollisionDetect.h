@@ -34,10 +34,10 @@ class CollisionDetect : public b2ContactListener
 	b2World *world;
 public:
 	CollisionDetect( b2World * );
-	void BeginContact(b2Contact* contact);
-	void EndContact(b2Contact* contact);
-	void PreSolve( b2Contact* contact, const b2Manifold* oldManifold);
-	void PostSolve( b2Contact* contact, const b2ContactImpulse* impulse );
+    void BeginContact( b2Contact* contact );
+    void EndContact( b2Contact* contact );
+    void PreSolve( b2Contact* contact, const b2Manifold* oldManifold );
+    void PostSolve( b2Contact* contact, const b2ContactImpulse* impulse );
 };
 
 #endif
